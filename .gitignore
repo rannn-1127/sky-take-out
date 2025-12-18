@@ -1,0 +1,32 @@
+**/target/
+.idea
+*.iml
+*.class
+*Test.java
+**/test/
+
+# 若要开源，需要添加数据库密码等密码的yml配置文件，以防信息泄露
+# 敏感配置（绝不能提交！）
+.env
+.env.local
+config/secrets.yml
+application-dev.yml
+application-prod.yml
+database.yml
+secrets.properties
+*.key
+*.pem
+*.crt
+id_rsa
+id_rsa.pub
+
+# 依赖与缓存
+node_modules/
+__pycache__/
+*.pyc
+
+# 日志与系统文件
+*.log
+logs/
+.DS_Store
+Thumbs.db
