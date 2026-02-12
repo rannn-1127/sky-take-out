@@ -19,5 +19,5 @@ public interface DishFlavorMapper {
 
     //根据菜品id查询数据
     @Select("select * from dish_flavor where dish_id = #{dishId}")
-    List<DishFlavor> getById(Long dishId);
+    List<DishFlavor> getByDishId(Long dishId);
 }

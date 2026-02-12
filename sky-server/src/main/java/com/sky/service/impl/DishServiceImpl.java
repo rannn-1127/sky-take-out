@@ -106,7 +106,7 @@ public class DishServiceImpl implements DishService {
         Dish dish = dishMapper.getById(id);
 
         //获取口味数据
-        List<DishFlavor> dishFlavor = dishFlavorMapper.getById(id);
+        List<DishFlavor> dishFlavor = dishFlavorMapper.getByDishId(id);
 
         //封装成VO
         DishVO dishVO = new DishVO();
@@ -173,5 +173,29 @@ public class DishServiceImpl implements DishService {
                 .build();
         List<Dish> dishList =  dishMapper.list(dish);
         return dishList;
+    }
+
+    /**
+     * 条件查询菜品和口味
+     * @param dish
+     * @return
+     */
+    public List<DishVO> listWithFlavor(Dish dish) {
+        List<Dish> dishList = dishMapper.list(dish);
+
+        List<DishVO> dishVOList = new ArrayList<>();
+
+        for (Dish d : dishList) {
+            DishVO dishVO = new DishVO();
+            BeanUtils.copyProperties(d,dishVO);
+
+            //根据菜品id查询对应的口味
+            List<DishFlavor> flavors = dishFlavorMapper.getByDishId(d.getId());
+
+            dishVO.setFlavors(flavors);
+            dishVOList.add(dishVO);
+        }
+
+        return dishVOList;
     }
 }
